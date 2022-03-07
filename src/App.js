@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import ClassList from "./Views/ClassList";
+import ClassDetail from "./Views/ClassDetail";
+import InstructureDetail from "./Views/InstructureDetail";
+import InstructureList from "./Views/InstructureList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<ClassList />} />
+      <Route path="/classdetail/:id" element={<ClassDetail />} />
+      <Route path="/instructurelist" element={<InstructureList />} />
+      <Route path="/instructuredetail/:id" element={<InstructureDetail />} />
+      <Route
+        path="*"
+        element={
+          <main>
+            <p>Not Found</p>
+          </main>
+        }
+      />
+    </Routes>
   );
 }
 
