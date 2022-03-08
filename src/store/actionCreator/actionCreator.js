@@ -13,7 +13,7 @@ export const fetchClassList = () => {
       .then((res) => {
         return res.json().then((data) => {
           if (res.ok) {
-            dispatch(classList(data));
+            dispatch(classList(data.data.records));
           } else {
             return Promise.reject(data);
           }
@@ -34,7 +34,7 @@ export const fetchClassDetail = (id) => {
       .then((res) => {
         return res.json().then((data) => {
           if (res.ok) {
-            dispatch(classDetail(data));
+            dispatch(classDetail(data.data));
           } else {
             return Promise.reject(data);
           }
@@ -55,7 +55,7 @@ export const fetchInstructureList = () => {
       .then((res) => {
         return res.json().then((data) => {
           if (res.ok) {
-            dispatch(instructureList(data));
+            dispatch(instructureList(data.data.records));
           } else {
             return Promise.reject(data);
           }
@@ -76,7 +76,7 @@ export const fetchInstructureDetail = (id) => {
       .then((res) => {
         return res.json().then((data) => {
           if (res.ok) {
-            dispatch(instructureDetail(data));
+            dispatch(instructureDetails(data.data));
           } else {
             return Promise.reject(data);
           }
@@ -112,7 +112,7 @@ export const instructureList = (payload) => {
   };
 };
 
-export const instructureDetail = (payload) => {
+export const instructureDetails = (payload) => {
   return {
     type: FETCH_INSTRUCTURE_DETAIL,
     payload: payload,
