@@ -1,11 +1,17 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchInstructureList } from "../store/actionCreator/actionCreator";
+import { useNavigate } from "react-router-dom";
 import { BsFillPencilFill, BsEraserFill } from "react-icons/bs";
 
 function InstructureList() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { instructureList, loading, error } = useSelector((state) => state);
+
+  function seeDetail(id) {
+    navigate(`/instructuredetail/${id}`);
+  }
 
   useEffect(() => {
     dispatch(fetchInstructureList());
@@ -25,7 +31,6 @@ function InstructureList() {
       </>
     );
   }
-  console.log(instructureList.data.records);
 
   return (
     <>
@@ -78,7 +83,9 @@ function InstructureList() {
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <div className="flex justify-center">
                           <div className="flex flex-row space-x-4">
-                            <BsFillPencilFill />
+                            <BsFillPencilFill
+                              onClick={() => seeDetail(el.id)}
+                            />
                             <BsEraserFill />
                           </div>
                         </div>

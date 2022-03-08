@@ -1,6 +1,7 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchClassList } from "../store/actionCreator/actionCreator";
+import { useNavigate } from "react-router-dom";
 import {
   BsFillPencilFill,
   BsFillSquareFill,
@@ -9,7 +10,12 @@ import {
 
 function ClassList() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { classList, loading, error } = useSelector((state) => state);
+
+  function seeDetail(id) {
+    navigate(`/classdetail/${id}`);
+  }
 
   useEffect(() => {
     dispatch(fetchClassList());
@@ -98,7 +104,9 @@ function ClassList() {
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <div className="flex justify-center">
                           <div className="flex flex-row space-x-4">
-                            <BsFillPencilFill />
+                            <BsFillPencilFill
+                              onClick={() => seeDetail(el.id)}
+                            />
                             <BsFillSquareFill />
                             <BsEraserFill />
                           </div>
