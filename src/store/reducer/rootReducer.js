@@ -5,6 +5,7 @@ import {
   FETCH_INSTRUCTURE_DETAIL,
   SET_LOADING,
   SET_ERROR,
+  SET_LOGIN,
 } from "../actionTypes/actionType";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   instructureDetail: [],
   loading: true,
   error: null,
+  isLogin: false,
 };
 
 function rootReducer(state = initialState, action) {
@@ -46,6 +48,11 @@ function rootReducer(state = initialState, action) {
     return {
       ...state,
       error: action.payload,
+    };
+  } else if (action.type === SET_LOGIN) {
+    return {
+      ...state,
+      isLogin: action.payload,
     };
   }
   return state;

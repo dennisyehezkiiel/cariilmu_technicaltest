@@ -1,12 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { setLogin } from "../store/actionCreator/actionCreator";
 
 function Navbar() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const signOutHandler = () => {
     localStorage.clear();
-    navigate("/login");
+    dispatch(setLogin(false));
+    navigate("/");
   };
 
   return (
@@ -16,10 +20,7 @@ function Navbar() {
           <nav className="relative flex flex-wrap items-center justify-between px-2 py-5 bg-slate-100 mb-3">
             <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
               <div className="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
-                <p
-                  className="text-xl font-semibold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-zinc-500"
-                  to="/"
-                >
+                <p className="text-xl font-semibold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-zinc-500">
                   Cari Ilmu
                 </p>
               </div>
@@ -31,7 +32,7 @@ function Navbar() {
                   <li className="nav-item">
                     <Link
                       className="px-3 py-2 flex items-center text-sm uppercase font-semibold leading-snug text-zinc-500 hover:opacity-75"
-                      to="/"
+                      to="/classlist"
                     >
                       <p className="ml-2">Class List</p>
                     </Link>

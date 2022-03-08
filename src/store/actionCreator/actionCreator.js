@@ -5,6 +5,7 @@ import {
   FETCH_INSTRUCTURE_DETAIL,
   SET_LOADING,
   SET_ERROR,
+  SET_LOGIN,
 } from "../actionTypes/actionType";
 
 export const fetchClassList = () => {
@@ -129,6 +130,13 @@ export const setLoading = (payload) => {
 export const setError = (payload) => {
   return {
     type: SET_ERROR,
+    payload: payload,
+  };
+};
+
+export const setLogin = (payload) => {
+  return {
+    type: SET_LOGIN,
     payload: payload,
   };
 };
